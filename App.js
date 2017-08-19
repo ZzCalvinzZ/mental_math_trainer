@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Button, TouchableOpacity, Text } from 'react-native';
+import { OperatorButton } from './app/components/buttons';
 
 export default class App extends React.Component {
   selectAddition() {
@@ -27,19 +28,6 @@ export default class App extends React.Component {
   }
 }
 
-class OperatorButton extends React.Component {
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={this.props.onPress}
-        style={styles.operatorButton}
-      >
-        <Text style={styles.operatorBtnText}>{this.props.text}</Text>
-      </TouchableOpacity>
-    );
-  }
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,17 +36,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  operatorButton: {
-    width: 60,
-    height: 60,
-    backgroundColor: 'purple',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 3,
-  },
-  operatorBtnText: {
-    fontSize: 30,
-    color: 'white',
-  }
-
 });
