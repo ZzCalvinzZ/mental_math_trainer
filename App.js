@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Button, TouchableOpacity } from 'react-native';
 import {Pages, Operators} from 'mtrainer/app/components/constants';
 import OperatorSelectPage from 'mtrainer/app/components/pages/operator_select';
+import DigitSelectPage from 'mtrainer/app/components/pages/digit_select';
 
 export default class App extends React.Component {
 
@@ -32,6 +33,9 @@ export default class App extends React.Component {
         Page = OperatorSelectPage;
         break;
     }
+
+    //TODO remove
+    Page = DigitSelectPage;
 
     return (
       <Page
