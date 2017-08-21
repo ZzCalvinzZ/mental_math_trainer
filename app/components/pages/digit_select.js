@@ -33,29 +33,29 @@ export default class DigitSelectPage extends React.Component {
 
 class DigitSelector extends React.Component {
   addDigit = () => {
-    this.props.changeDigits(1, this.props.id);
+    if (this.props.digitCount < 3) {
+      this.props.changeDigits(1, this.props.id);
+    }
   };
 
   removeDigit = () => {
-    this.props.changeDigits(-1, this.props.id);
+    if (this.props.digitCount > 1) {
+      this.props.changeDigits(-1, this.props.id);
+    }
   };
 
   render() {
     return (
       <View style={styles.row}>
-        {this.props.digitCount < this.props.maxDigits &&
-          <OperatorButton
-            text="+"
-            onPress={this.addDigit}
-          />
-        }
-        <Text>{this.props.digitCount}</Text>
-        {this.props.digitCount > 1 &&
-          <OperatorButton
-            text="-"
-            onPress={this.removeDigit}
-          />
-        }
+        <OperatorButton
+          text="+"
+          onPress={this.addDigit}
+        />
+        <Text style={styles.digitText}>{this.props.digitCount}</Text>
+        <OperatorButton
+          text="-"
+          onPress={this.removeDigit}
+        />
       </View>
     );
   }
@@ -66,6 +66,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  digitText: {
+    marginLeft: 5,
+    marginRight: 5,
+    marginBottom: 20,
+    marginTop: 20,
+    fontSize: 30,
   },
   digitSelect: {
     flexDirection: 'column',
