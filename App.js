@@ -1,29 +1,44 @@
 import React from 'react';
-import { StyleSheet, View, Button, TouchableOpacity, Text } from 'react-native';
-import { OperatorButton } from './app/components/buttons';
+import { StyleSheet, View, Button, TouchableOpacity } from 'react-native';
+import {Pages, Operators} from 'mtrainer/app/components/constants';
+import OperatorSelectPage from 'mtrainer/app/components/pages/operator_select';
 
 export default class App extends React.Component {
-  selectAddition() {
-    console.log('addition');
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: Pages.OperatorSelect,
+      operator: null,
+    };
   }
 
-  selectSubtraction() {
-    console.log('substraction');
-  }
+  selectOperator = (operator) => {
+    console.log(operator);
+    this.setState({
+      operator: operator,
+      page: Pages.DigitSelect,
+    });
+  };
 
   render() {
+    let Page;
+
+    switch (this.state.page) {
+      case Pages.OperatorSelect:
+        Page = OperatorSelectPage;
+        break;
+      case Pages.DigitSelect:
+        Page = OperatorSelectPage;
+        break;
+    }
+
     return (
-      <View style={styles.container}>
-        <OperatorButton
-          text="+"
-          onPress={this.selectAddition}
-        />
-        <OperatorButton
-          text="-"
-          onPress={this.selectSubtraction}
-        />
-      </View>
+      <Page
+        styles={styles}
+        selectOperator={this.selectOperator}
+        page={this.state.page}
+      />
     );
   }
 }
