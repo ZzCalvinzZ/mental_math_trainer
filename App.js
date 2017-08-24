@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Button, TouchableOpacity } from 'react-native';
+import { View, Button, TouchableOpacity } from 'react-native';
 import {Pages, Operators} from 'mtrainer/app/components/constants';
 import OperatorSelectPage from 'mtrainer/app/components/pages/operator_select';
 import DigitSelectPage from 'mtrainer/app/components/pages/digit_select';
+import CalculatorPage from 'mtrainer/app/components/pages/calculator';
 
 export default class App extends React.Component {
 
@@ -10,15 +11,24 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       page: Pages.OperatorSelect,
+      digitCount1: null,
+      digitCount2: null,
       operator: null,
     };
   }
 
   selectOperator = (operator) => {
-    console.log(operator);
     this.setState({
       operator: operator,
       page: Pages.DigitSelect,
+    });
+  };
+
+  selectNumberOfDigits = (digitCount1, digitCount2) => {
+    this.setState({
+      digitCount1: digitCount1,
+      digitCount2: digitCount2,
+      page: Pages.Calculator,
     });
   };
 
@@ -30,29 +40,19 @@ export default class App extends React.Component {
         Page = OperatorSelectPage;
         break;
       case Pages.DigitSelect:
-        Page = OperatorSelectPage;
+        Page = DigitSelectPage;
+        break;
+      case Pages.Calculator:
+        Page = CalculatorPage;
         break;
     }
 
-    //TODO remove
-    Page = DigitSelectPage;
-
     return (
       <Page
-        styles={styles}
         selectOperator={this.selectOperator}
+        selectNumberOfDigits={this.selectNumberOfDigits}
         page={this.state.page}
       />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-});
