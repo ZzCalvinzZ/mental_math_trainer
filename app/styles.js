@@ -27,7 +27,7 @@ export default StyleSheet.create({
   },
   digitSelect: {
     flexDirection: 'column',
-  }, 
+  },
   ok: {
     width: 150,
     height: 60,
@@ -47,5 +47,16 @@ export default StyleSheet.create({
   btnText: {
     fontSize: 30,
     color: 'white',
+  },
+  number: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    fontSize: 40,
+    textAlign: 'right',
+  },
+  calcContainer: {
+  },
+  lastNumber: {
+    borderBottomWidth: 2,
   }
 });
