@@ -13,6 +13,10 @@ export default class OperatorSelectPage extends React.Component {
     this.props.selectOperator(Operators.Subtraction);
   };
 
+  selectMultiplication = () => {
+    this.props.selectOperator(Operators.Multiplication);
+  };
+
   render() {
     return (
       <View style={[styles.container, styles.column]}>
@@ -25,6 +29,10 @@ export default class OperatorSelectPage extends React.Component {
           <OperatorButton
             text="-"
             onPress={this.selectSubtraction}
+          />
+          <OperatorButton
+            text="x"
+            onPress={this.selectMultiplication}
           />
         </View>
       </View>

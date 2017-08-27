@@ -3,20 +3,24 @@ import { StyleSheet, View, Button, TouchableOpacity, Text } from 'react-native';
 import styles from 'app/styles';
 
 export default class CalculatorPage extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
+  getInitialState = () => {
+    return {
       revealAnswer: false,
       answer: false,
       number1: this.getRandomNumberFromDigits(this.props.digitCount1),
       number2: this.getRandomNumberFromDigits(this.props.digitCount2),
     };
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
   }
 
   getRandomNumberFromDigits(digits) {
-    const tenthPower = Math.pow(10, digits);
-    return Math.floor(Math.random() * tenthPower);
+    const max = Math.pow(10, digits);
+    const min = Math.pow(10, digits - 1);
+    return Math.floor(Math.random() * (max - min) + min);
   }
 
   getAnswer() {
@@ -51,6 +55,10 @@ export default class CalculatorPage extends React.Component {
 
   };
 
+  regenerate = () => {
+    this.setState(this.getInitialState());
+  };
+
   render() {
     return (
       <View style={[styles.container, styles.column]}>
@@ -66,14 +74,27 @@ export default class CalculatorPage extends React.Component {
           </Text>
         </View>
         <View>
-          <TouchableOpacity
-            onPress={this.revealAnswer}
-            style={styles.ok}
-          >
-            <Text style={styles.btnText}>
-              Reveal
-            </Text>
-          </TouchableOpacity>
+          {!this.state.revealAnswer &&
+            <TouchableOpacity
+              onPress={this.revealAnswer}
+              style={styles.ok}
+            >
+              <Text style={styles.btnText}>
+                Reveal
+              </Text>
+            </TouchableOpacity>
+          }
+          {this.state.revealAnswer &&
+            <TouchableOpacity
+              onPress={this.regenerate}
+              style={styles.ok}
+            >
+              <Text style={styles.btnText}>
+                ReRoll
+              </Text>
+            </TouchableOpacity>
+
+          }
         </View>
       </View>
     );
