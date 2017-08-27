@@ -5,9 +5,9 @@ export const Pages = {
 };
 
 export const Operators = {
-  Addition: 'add',
-  Subtraction: 'sub',
-  Multiplication: 'mult',
-  Division: 'div'
+  Addition: '+',
+  Subtraction: '-',
+  Multiplication: 'x',
+  Division: '/'
 };
 

@@ -34,6 +34,7 @@ export default class App extends React.Component {
 
   render() {
     let Page;
+    let extraProps = {};
 
     switch (this.state.page) {
       case Pages.OperatorSelect:
@@ -44,6 +45,11 @@ export default class App extends React.Component {
         break;
       case Pages.Calculator:
         Page = CalculatorPage;
+        extraProps = {
+          operator: this.state.operator,
+          digitCount1: this.state.digitCount1,
+          digitCount2: this.state.digitCount2,
+        };
         break;
     }
 
@@ -52,6 +58,7 @@ export default class App extends React.Component {
         selectOperator={this.selectOperator}
         selectNumberOfDigits={this.selectNumberOfDigits}
         page={this.state.page}
+        {...extraProps}
       />
     );
   }
