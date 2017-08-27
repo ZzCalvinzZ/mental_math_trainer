@@ -31,12 +31,10 @@ export default class DigitSelectPage extends React.Component {
         <DigitSelector id="digitCount1" digitCount={this.state.digitCount1} maxDigits={3} changeDigits={this.changeDigits}></DigitSelector>
         <DigitSelector id="digitCount2" digitCount={this.state.digitCount2} maxDigits={3} changeDigits={this.changeDigits}></DigitSelector>
         <TouchableOpacity
-          onPress={this.props.onPress}
           style={styles.ok}
+          onPress={this.completeDigitSelection}
         >
-          <Text
-            style={styles.btnText}
-            onPress={this.completeDigitSelection}>
+          <Text style={styles.btnText}>
             Done
           </Text>
         </TouchableOpacity>
